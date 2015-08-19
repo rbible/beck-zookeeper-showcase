@@ -2,7 +2,9 @@ package com.olmlo.zookeeper;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.List;
 
+import org.apache.commons.collections.CollectionUtils;
 import org.apache.zookeeper.KeeperException;
 import org.junit.Assert;
 import org.junit.Test;
@@ -44,9 +46,16 @@ public class ZooKeeperOperatorTest {
     public void testGetChild() {
         try {
             ZooKeeperOperator zkoperator = connect();
-            System.out.println("节点孩子信息:");
-            zkoperator.getChild("/root");
+            List<String> childs = zkoperator.getChild("/root");
 
+            System.out.println("**************************************** ");
+            if (CollectionUtils.isNotEmpty(childs)) {
+
+                System.out.println("childs : " + childs);
+            } else {
+                System.out.println("no childs");
+            }
+            System.out.println("**************************************** ");
             zkoperator.close();
         } catch (IOException | InterruptedException | KeeperException e) {
             e.printStackTrace();

@@ -9,11 +9,8 @@ import org.apache.zookeeper.ZooDefs.Ids;
 public class ZooKeeperOperator extends AbstractZooKeeper {
     static String HOSTS_PORT = "127.0.0.1:2181";
 
-    // private final static Logger log =
-    // LoggerFactory.getLogger(ZooKeeperOperator.class);
-
     /**
-     * <b>function:</b>创建持久态的znode,比支持多层创建.比如在创建/parent/child的情况下,无/parent.无法通过
+     * 创建持久态的znode,比支持多层创建.比如在创建/parent/child的情况下,无/parent.无法通过
      */
     public void create(String path, byte[] data) throws KeeperException, InterruptedException {
         /**
@@ -36,7 +33,7 @@ public class ZooKeeperOperator extends AbstractZooKeeper {
     }
 
     public byte[] getData(String path) throws KeeperException, InterruptedException {
-        return this.zooKeeper.getData(path, false, null);
+        return zooKeeper.getData(path, false, null);
     }
 
 }
